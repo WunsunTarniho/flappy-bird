@@ -1,4 +1,4 @@
-import { background, bird, land, pipe, getReady, gameOver, score, medal} from "./object.js";
+import { background, bird, land, pipe, getReady, gameOver, score, medal, restartButton} from "./object.js";
 
 const draw = () => {
     background.draw();
@@ -8,6 +8,7 @@ const draw = () => {
     land.draw();
     gameOver.draw();
     score.draw();
+    // restartButton.draw();
     medal.draw();
 }
 

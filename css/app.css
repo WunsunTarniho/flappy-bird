@@ -21,7 +21,7 @@ canvas {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    /* user-select: none; */
+    user-select: none;
     -webkit-appearance: none;
     outline: none;
     height: 100%;

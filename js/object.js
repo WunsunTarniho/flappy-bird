@@ -403,28 +403,38 @@ const restartButton = {
   h: 35,
 
   click: (e) => {
+    // If no event was provided, do nothing
+    if (!e && !state.play) return;
+
     let rect = canvas.getBoundingClientRect();
 
-    // console.log(rect.left)
-    // console.log(e.clientX)
-    // console.log(e.clientX - rect.left)
-    let clickX = e.clientX - rect.left;
-    let clickY = e.clientY - rect.top;
+    // Support touch events (TouchEvent) and mouse events (MouseEvent)
+    let clientX, clientY;
+    if (e.touches && e.touches.length) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+
+    let clickX = clientX - rect.left;
+    let clickY = clientY - rect.top;
 
     if (clickX >= restartButton.x && clickX <= restartButton.x + restartButton.w
       && clickY >= restartButton.y && clickY <= restartButton.y + restartButton.h) {
       state.gameOver = false;
       location.reload();
-      // state.play = true;
+      state.play = true;
     }
   },
 
-  // draw: () => {
-  //   ctx.beginPath();
-  //   ctx.fillStyle = 'green';
-  //   ctx.rect(restartButton.x, restartButton.y , restartButton.w, restartButton.h);
-  //   ctx.fill()
-  // }
+  draw: () => {
+    ctx.beginPath();
+    ctx.fillStyle = 'green';
+    ctx.rect(restartButton.x, restartButton.y , restartButton.w, restartButton.h);
+    ctx.fill()
+  }
 }
 
 // Tampilan Score dan penyimpanan score
@@ -504,11 +514,11 @@ canvas.addEventListener("click", state.clickHandler);
 // Support mobile touch: prevent default tap highlight and forward to click handler
 canvas.addEventListener("touchstart", function(e){
     e.preventDefault();
-    state.clickHandler();
+    state.clickHandler(e);
 }, { passive: false });
 
 window.addEventListener("keydown", state.keydownHandler);
 
 document.body.appendChild(canvas);
 
-export { background, bird, land, pipe, getReady, gameOver, score, medal, canvas, ctx, images};
+export { background, bird, land, pipe, getReady, gameOver, score, medal, canvas, ctx, images, restartButton};
