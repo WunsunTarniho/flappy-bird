@@ -1,51 +1,61 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    height: 720px;
+body {
+    height: 100vh;
     background-image: url("/img/web_background.png");
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    touch-action: none;
 }
 
-canvas{
-    display: block;
+canvas {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    /* user-select: none; */
+    -webkit-appearance: none;
+    outline: none;
+    height: 100%;
     border: 1px solid black;
     margin: 0 auto 0;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    background-color: transparent;
 }
 
-@media(max-width: 540px){
-    body{
+canvas:focus, canvas:active {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media(max-width: 540px) {
+    body {
         background-color: lightblue;
-        width: 480px;
-        height: 1024px;
-        line-height: 480px;
+        width: 100%;
+        height: auto;
     }
-    
-    canvas{
+
+    canvas {
         margin-top: 20%;
-    }
-    
-    .qrcode{
-        top: 710px !important;
-        left: 15px !important;
+        touch-action: none;
     }
 }
 
-img[alt="www.000webhost.com"]{
-    display: none !important;
-}
-
-canvas button{
+canvas button {
     margin: auto;
     padding: 30px;
 }
 
-.qrcode{
+.qrcode {
     display: none;
     position: absolute !important;
     top: 640px;

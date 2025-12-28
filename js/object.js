@@ -501,6 +501,12 @@ const score = {
 }
 
 canvas.addEventListener("click", state.clickHandler);
+// Support mobile touch: prevent default tap highlight and forward to click handler
+canvas.addEventListener("touchstart", function(e){
+    e.preventDefault();
+    state.clickHandler();
+}, { passive: false });
+
 window.addEventListener("keydown", state.keydownHandler);
 
 document.body.appendChild(canvas);
